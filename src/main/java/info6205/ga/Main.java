@@ -4,8 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int cityNum = 100;
-		int maxGen = 100000;
+		int cityNum = 50;
+		int maxGen = 10000;
 		int popSize = 100;
 		double mutationRate = 0.05;
 		double crossoverRate = 0.8;
@@ -29,6 +29,7 @@ public class Main {
             System.out.println(population.getIndividuals().length);
             System.out.println("Generation: "+(i+1)+" Fitness: "+population.getFittest().getFitness()+" Distance: "+population.getFittest().totalDistance());
         }
+		System.out.println("Path: "+population.getFittest().getCities().toString());
 	}
 
 }
