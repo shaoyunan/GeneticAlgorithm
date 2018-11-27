@@ -36,5 +36,8 @@ public class Population {
         }
         return fit;
 	}
-
+	
+	public double getAvgFitness() {
+		return 0.0;
+	}
 }

@@ -29,9 +29,8 @@ public class GeneticAlgorithm {
 
 			Individual parent1 = tournamentSelection(pop);
 			Individual parent2 = tournamentSelection(pop);
+
 			Individual child = crossover(parent1, parent2);
-			// System.out.println(parent1.getCities().size()+",
-			// "+parent2.getCities().size()+", "+child.getCities().size());
 			newPopulation.getIndividuals()[i] = child;
 		}
 
@@ -80,7 +79,7 @@ public class GeneticAlgorithm {
 		}
 		return child;
 	}
-	
+
 	public void mutate(Individual individual) {
 
 		for (int i = 0; i < individual.getCities().size(); i++) {
