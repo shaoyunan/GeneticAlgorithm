@@ -52,6 +52,6 @@ public class City {
 
 	@Override
 	public String toString() {
-		return this.name;
+		return name+"("+x+","+y+")";
 	}
 }

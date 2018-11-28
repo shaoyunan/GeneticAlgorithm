@@ -1,59 +1,70 @@
 package info6205.ga;
 
+import java.util.Random;
+
 public class GeneticAlgorithm {
 	private int populationSize;
 	private double mutationRate;
-	private double crossoverRate;
-	private int tournamentSize;
-	private boolean elitism = true;
-	private int cityCount;
-	
-	public GeneticAlgorithm(int popSize, double mRate, double cRate, int tSize, int cityCount) {
+
+	public GeneticAlgorithm(int popSize, double mRate) {
 		this.populationSize = popSize;
 		this.mutationRate = mRate;
-		this.crossoverRate = cRate;
-		this.tournamentSize = tSize;
-		this.cityCount = cityCount;
+
 	}
 
 	public Population evolve(Population pop) {
-		Population newPopulation = new Population(pop.size());
+		Population newPopulation = new Population();
 
-		int elitismOffset = 0;
-		if (elitism) {
-			newPopulation.getIndividuals()[0] = pop.getFittest();
-			elitismOffset = 1;
+		Population survive = cull(pop);
+
+		newPopulation = crossover(survive);
+		// mutate after breeding
+		for (int i = 0; i < newPopulation.size(); i++) {
+			mutate(newPopulation.getIndividuals().get(i));
 		}
-
-		for (int i = elitismOffset; i < newPopulation.size(); i++) {
-
-			Individual parent1 = tournamentSelection(pop);
-			Individual parent2 = tournamentSelection(pop);
-
-			Individual child = crossover(parent1, parent2);
-			newPopulation.getIndividuals()[i] = child;
-		}
-
-		for (int i = elitismOffset; i < newPopulation.size(); i++) {
-			mutate(newPopulation.getIndividuals()[i]);
+		for (int i = 0; newPopulation.size() < populationSize; i++) {
+			newPopulation.addIndividual(survive.getIndividuals().get(i));
 		}
 
 		return newPopulation;
 	}
 
-	private Individual tournamentSelection(Population pop) {
-		Population tournament = new Population(tournamentSize);
-		for (int i = 0; i < tournamentSize; i++) {
-			int rand = (int) (Math.random() * pop.size());
-			tournament.getIndividuals()[i] = pop.getIndividuals()[rand];
+	private Population cull(Population pop) {
+		Population survive = new Population();
+		pop.sort();
+		for (int i = 0; i < pop.size() / 2; i++) {
+			survive.addIndividual(pop.getIndividuals().get(i));
 		}
-		//System.out.println(tournament.getFittest().getFitness());
-		return tournament.getFittest();
+		survive.shuffle();
+		return survive;
 	}
 
-	public Individual crossover(Individual parent1, Individual parent2) {
-		Individual child = new Individual(cityCount);
-		
+	public Population crossover(Population pop) {
+
+		Population newPop = new Population();
+		Random rand = new Random();
+		// int[] record = new int[pop.size()];
+		while (newPop.size() < pop.size()) {
+			int i = rand.nextInt(pop.size());
+			int j = rand.nextInt(pop.size());
+			if (i != j) {
+				Individual parent1 = pop.getIndividuals().get(i);
+				Individual parent2 = pop.getIndividuals().get(j);
+
+				for (int k = 0; k < 2; k++) {
+					newPop.addIndividual(doCrossover(parent1, parent2));
+				}
+
+			}
+		}
+
+		return newPop;
+	}
+
+	private Individual doCrossover(Individual parent1, Individual parent2) {
+		Individual child = new Individual();
+		child.buildIndividual(parent1.size());
+
 		int start = (int) (Math.random() * parent1.size());
 		int end = (int) (Math.random() * parent1.size());
 

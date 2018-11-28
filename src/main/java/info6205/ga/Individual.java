@@ -3,15 +3,12 @@ package info6205.ga;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Individual {
+public class Individual implements Comparable<Individual>{
 	private ArrayList<City> cities;
 	private double fitness;
 
-	public Individual(int cityCount) {
+	public Individual() {
 		this.cities = new ArrayList<City>();
-		for(int i=0; i<cityCount; i++) {
-			cities.add(null);
-		}
 		this.fitness = 0.0;
 	}
 
@@ -24,6 +21,12 @@ public class Individual {
 		Collections.shuffle(this.cities);
 	}
 
+	public void buildIndividual(int size) {
+		for(int i=0; i<size; i++) {
+			cities.add(null);
+		}
+	}
+	
 	public ArrayList<City> getCities() {
 		return cities;
 	}
@@ -41,7 +44,6 @@ public class Individual {
 
 	public double totalDistance() {
 		double totalDistance = 0.0;
-		//System.out.println(cities.size());
 		for (int i = 0; i < cities.size(); i++) {
 			City start = cities.get(i);
 			City end = cities.get(0);
@@ -61,4 +63,16 @@ public class Individual {
 	public int size() {
 		return cities.size();
 	}
+
+	public int compareTo(Individual indiv) {
+		// TODO Auto-generated method stub
+		
+		if(getFitness()<indiv.getFitness()) {
+			return 1;
+		}else if(getFitness()>indiv.getFitness()) {
+			return -1;
+		}
+		return 0;
+	}
+
 }

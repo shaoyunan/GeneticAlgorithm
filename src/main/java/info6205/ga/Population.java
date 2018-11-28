@@ -1,43 +1,67 @@
 package info6205.ga;
 
-public class Population {
-	private Individual[] individuals;
+import java.util.ArrayList;
+import java.util.Collections;
 
-	public Population(int popSize) {
-		individuals = new Individual[popSize];
+public class Population {
+	private ArrayList<Individual> individuals;
+
+	public Population() {
+		individuals = new ArrayList<Individual>();
 	}
 
 	public Population(int popSize, City[] cities) {
-		individuals = new Individual[popSize];
+		individuals = new ArrayList<Individual>();
 		for (int i = 0; i < popSize; i++) {
 			Individual individual = new Individual(cities);
-			individuals[i] = individual;
-		}	
+			individuals.add(individual);
+		}
 	}
 
 	public int size() {
-		return individuals.length;
-	}
-
-	public Individual[] getIndividuals() {
-		return individuals;
-	}
-
-	public void setIndividuals(Individual[] individuals) {
-		this.individuals = individuals;
+		return individuals.size();
 	}
 
 	public Individual getFittest() {
-		Individual fit = individuals[0];
-		for (int i = 1; i < individuals.length; i++) {
-            if (fit.getFitness() < individuals[i].getFitness()) {
-                fit = individuals[i];
-            }
-        }
-        return fit;
+		Individual fit = individuals.get(0);
+		for (int i = 1; i < individuals.size(); i++) {
+			if (fit.getFitness() < individuals.get(i).getFitness()) {
+				fit = individuals.get(i);
+			}
+		}
+		return fit;
 	}
-	
+
 	public double getAvgFitness() {
-		return 0.0;
+		double total = 0.0;
+		int count = 0;
+		if (individuals.size() != 0) {
+			for (int i = 0; i < individuals.size(); i++) {
+				total += individuals.get(i).getFitness();
+				count++;
+			}
+		}
+		return total / count;
+	}
+
+	public ArrayList<Individual> getIndividuals() {
+		return individuals;
+	}
+
+	public void setIndividuals(ArrayList<Individual> individuals) {
+		this.individuals = individuals;
+	}
+
+	public void addIndividual(Individual indiv) {
+		individuals.add(indiv);
+	}
+
+	public void shuffle() {
+		Collections.shuffle(individuals);
+	}
+
+	public void sort() {
+		Collections.sort(individuals);
+
 	}
 }
