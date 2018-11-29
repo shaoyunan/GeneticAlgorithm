@@ -3,6 +3,8 @@ package info6205.ga;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//Each individual is a sequence of cities which represents the route
+//The overrided compareTo function keeps the descending order when sorting the population
 public class Individual implements Comparable<Individual>{
 	private ArrayList<City> cities;
 	private double fitness;
@@ -13,14 +15,17 @@ public class Individual implements Comparable<Individual>{
 	}
 
 	public Individual(City[] cities) {
-		
+		this.fitness=0.0;
 		this.cities = new ArrayList<City>();
 		for (int i = 0; i < cities.length; i++) {
 			this.cities.add(cities[i]);
 		}
+		
+		//Shuffle to make the random first generation
 		Collections.shuffle(this.cities);
 	}
 
+	//Add null values for crossover
 	public void buildIndividual(int size) {
 		for(int i=0; i<size; i++) {
 			cities.add(null);
@@ -35,8 +40,9 @@ public class Individual implements Comparable<Individual>{
 		this.cities = cities;
 	}
 
+	//Fitness calculation, simply just 1/totalDistance of the route
 	public double getFitness() {
-		if (fitness == 0) {
+		if (fitness == 0.0) {
 			fitness = 1 / totalDistance();
 		}
 		return fitness*1000;
@@ -64,8 +70,8 @@ public class Individual implements Comparable<Individual>{
 		return cities.size();
 	}
 
+	//Helps rearrange the candidates with best fitness to the beginning when sorting
 	public int compareTo(Individual indiv) {
-		// TODO Auto-generated method stub
 		
 		if(getFitness()<indiv.getFitness()) {
 			return 1;
