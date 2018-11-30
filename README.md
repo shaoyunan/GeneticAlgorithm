@@ -27,7 +27,7 @@ The path is represented by the order of city, the fitness is the total distance 
 	- mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
 	- mutateAlt: alternative method, only swap once. 
 
-##Test Cases
+## Test Cases
 
 ## Utilities
 - CityReader
