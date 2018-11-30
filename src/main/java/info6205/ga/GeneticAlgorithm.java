@@ -86,16 +86,18 @@ public class GeneticAlgorithm {
 		int start = (int) (Math.random() * parent1.size());
 		int end = (int) (Math.random() * parent1.size());
 
-		while(start == end) {
+		while (start == end || Math.abs(start - end) > child.size() / 1.5) {
 			end = (int) (Math.random() * parent1.size());
 		}
-		
+
 		// Select one part of the gene from the first parent
 		for (int i = 0; i < child.size(); i++) {
-			if (start < end && i > start && i < end) {
-				child.getCities().set(i, parent1.getCities().get(i));
-			} else if (start > end) {
-				if (!(i < start && i > end)) {
+			if (start < end) {
+				if (i >= start && i <= end) {
+					child.getCities().set(i, parent1.getCities().get(i));
+				}
+			} else {
+				if (i <= start && i >= end) {
 					child.getCities().set(i, parent1.getCities().get(i));
 				}
 			}
@@ -135,7 +137,7 @@ public class GeneticAlgorithm {
 		if (Math.random() <= mutationRate) {
 			int i = (int) (individual.getCities().size() * Math.random());
 			int j = (int) (individual.getCities().size() * Math.random());
-			while(i==j) {
+			while (i == j) {
 				j = (int) (individual.getCities().size() * Math.random());
 			}
 			City c1 = individual.getCities().get(i);
@@ -153,6 +155,5 @@ public class GeneticAlgorithm {
 	public void setMutationRate(double mutationRate) {
 		this.mutationRate = mutationRate;
 	}
-	
-	
+
 }

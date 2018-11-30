@@ -19,13 +19,13 @@ The path is represented by the order of city, the fitness is the total distance 
 - Evolve: Produce next generation by eliminating the second half of population after sorting by fitness. Then mating/breeding to have children by crossover and mutation. And fill the rest space using the selected/survivor pool to reach the maximum population.
 
 - Culling: select the best half of the population
-	-individual class implements comparable, compareTo function is used to reverse the order when sorting
+	- individual class implements comparable, compareTo function is used to reverse the order when sorting
 
 - Crossover: Select part of the gene from parent1 and fill the rest using missing parts from parent2
 
 - Mutate: randomly swap the order of gene (city) for each child, have two implementations
-	-mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
-	-mutateAlt: alternative method, only swap once. 
+	- mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
+	- mutateAlt: alternative method, only swap once. 
 
 ##Test Cases
 
