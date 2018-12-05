@@ -12,6 +12,10 @@ public class Main_Input {
 
 	public static void main(String[] args) throws IOException {
 
+// create a  menu for user to make selection		
+		
+		
+		
 		/*
 		 * @param scale the range of coordinates of cities ie 500 means 500x500
 		 * 
@@ -39,12 +43,20 @@ public class Main_Input {
 //		int scale = 500;
 //		ReportWriter.generateRandom(input, cityNum, scale);
 
+		// GA parameters 
+		
 		int maxGen = 1000;
 		int initPopSize = 1000;
 		double mutationRate = 0.05;
 
 		City[] cities = CityReader.getInput(input);
 
+// constructor initializing parameters
+		
+		
+		
+		
+		
 		GeneticAlgorithm ga = new GeneticAlgorithm(initPopSize, mutationRate);
 		Population population = new Population(initPopSize, cities);
 
@@ -57,7 +69,7 @@ public class Main_Input {
 
 		for (int i = 0; i < maxGen; i++) {
 
-			population = ga.evolve(population);
+	population = ga.evolve(population);
 
 			if (i < 100) {
 				report.addRecord(new Record(String.valueOf(i + 1), df.format(population.getAvgFitness()),
@@ -72,5 +84,45 @@ public class Main_Input {
 		ReportWriter.makeReport(report);
 		System.out.println("Path: " + population.getFittest().getCities().toString());
 	}
+	
+	// method which makes multithread running or parallel execution
+	
+	
+	// Start evolution loop
 
+			// Run Evolution for Partition 1
+			CompletableFuture<Map<Integer, Population>> partition1 = CompletableFuture.supplyAsync(() -> {
+				return evolve(ga, timetable);
+			});
+
+			// Run Evolution for Partition 2
+			CompletableFuture<Map<Integer, Population>> patition2 = CompletableFuture.supplyAsync(() -> {
+				return evolve(ga, timetable);
+			});
+
+			// Merge the results
+			CompletableFuture<Map<Integer, Population>> combinedFuture = patition2.thenCombine(partition1, (xs1, xs2) -> {
+				logger.info("In merge..");
+				Map<Integer, Population> result = new LinkedHashMap<Integer, Population>(xs1.size() + xs2.size());
+				return merge(result, xs1, xs2);
+			});
+
+			// Get the fittest population
+			Map<Integer, Population> result = combinedFuture.get();
+			population = result.get(result.size());
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
