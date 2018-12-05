@@ -4,8 +4,6 @@ import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
-
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -15,6 +13,10 @@ import info6205.ga.City;
 
 
 public class MateTest {
+	 
+	//private static final Object Object = null;
+	Individual in = new Individual();
+	
 	 @Before
 	 public void before() throws Exception {
 	 }
@@ -26,7 +28,7 @@ public class MateTest {
 	 //distance test
 	 @Test
 	    public void testDistance() throws Exception {
-		 Individual in = new Individual();
+		 
 		 ArrayList<City> cities = new ArrayList<City>();
 		 City City1 = new City();
 		 City City2 = new City();
@@ -52,14 +54,33 @@ public class MateTest {
 				totalDistance += start.distanceTo(end);	        
 	        	}
 	      assertEquals(totalDistance, in.totalDistance(),0.1);
-	 }   
-	 
+	       
+	      
+	 }   	 
 	 
 	 
 	 //fitness test 
 	 @Test
 	    public void testFitness() throws Exception {
-	        
+		 double fitness;
+		 fitness = 1 / in.totalDistance();
+		 assertEquals(fitness, in.getFitness(),0.1);
 	 }
+	 	/*try { 
+     	Method td = in.getClass().getMethod("totalDistance");
+     	td.setAccessible(true); 
+	 	Object Parameters1 = null;
+	 	td.invoke(td,Object, Parameters1); 
+  	}  catch (SecurityException e) {
+		e.printStackTrace();
+	} catch (NoSuchMethodException e) {
+		e.printStackTrace();
+	} catch (IllegalArgumentException e) {
+		e.printStackTrace();
+	} catch (IllegalAccessException e) {
+		e.printStackTrace();
+	}  catch (InstantiationException e) {
+		e.printStackTrace();
+	}*/
 	    
 }
