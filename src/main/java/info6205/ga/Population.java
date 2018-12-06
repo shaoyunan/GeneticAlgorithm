@@ -2,6 +2,7 @@ package info6205.ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Population {
 	private ArrayList<Individual> individuals;
@@ -18,6 +19,10 @@ public class Population {
 		}
 	}
 
+	public Population(List<Individual> list) {
+		individuals = new ArrayList<Individual>(list);
+	}
+	
 	public int size() {
 		return individuals.size();
 	}

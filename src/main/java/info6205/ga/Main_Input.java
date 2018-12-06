@@ -41,7 +41,7 @@ public class Main_Input {
 
 		int maxGen = 1000;
 		int initPopSize = 1000;
-		double mutationRate = 0.05;
+		double mutationRate = 0.01;
 		int recordNumber = maxGen;
 
 		City[] cities = CityReader.getInput(input);
@@ -74,7 +74,6 @@ public class Main_Input {
 		report.setResult("Candidate Path: " + population.getFittest().getCities().toString());
 		ReportWriter.makeReport(report);
 		System.out.println("Path: " + population.getFittest().getCities().toString());
-		System.out.println(pTime);
 		System.out.println("Average Time Taken for 1 Evolution: " + ((double)pTime / (double)maxGen) +"ms");
 	}
 
