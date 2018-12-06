@@ -27,17 +27,15 @@ The path is represented by the order of city, the fitness is the total distance 
 	- mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
 	- mutateAlt: alternative method, only swap once. 
 
-## Test Cases
-test case description
-
 ## Utilities
 - CityReader
  - A .csv file (default cities.csv, inside /input folder) for testing one fixed group of cities
  - Can use the getRandom() method for each run to test the application
  
 - ReportWriter
- - Write the output file which keeps generation information, average fitness and best fitness
- - Change the parameter in Main_Input to decide how many generations are kept (all generation information still showed in console), depending on the population size and maximum generation value, after some point the results are the same. The output file is used for analyzing more efficiently.
+ - The log class we use for the project, provide convinence when we want to plot the resutls
+ - Write the output file which keeps generation information, average fitness, best fitness and the final best candidate
+ 	- Change the parameter in Main_Input to decide how many generations are kept (all generation information still showed in console), depending on the population size and maximum generation value, after some point the results are the same. The output file is used for analyzing more efficiently.
  - If a new set of input needed, just uncomment three lines in Main_Input, run once, then comment them out again
  ```
  		// Uncomment the next three lines for new random input file

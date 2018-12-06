@@ -1,6 +1,7 @@
 package info6205.ga;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
 public class GeneticAlgorithm {
 	private int populationSize;
@@ -30,7 +31,7 @@ public class GeneticAlgorithm {
 
 			// mutate(newPopulation.getIndividuals().get(i));
 
-			mutateAlt(newPopulation.getIndividuals().get(i));
+			mutate(newPopulation.getIndividuals().get(i));
 
 		}
 
