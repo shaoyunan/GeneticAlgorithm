@@ -18,14 +18,14 @@ The path is represented by the order of city, the fitness is the total distance 
 
 - Evolve: Produce next generation by eliminating the second half of population after sorting by fitness. Then mating/breeding to have children by crossover and mutation. And fill the rest space using the selected/survivor pool to reach the maximum population.
 
-- Culling: select the best half of the population
-	- individual class implements comparable, compareTo function is used to reverse the order when sorting
+- Culling: Select the best half of the population
+	- Individual class implements comparable, compareTo function is used to reverse the order when sorting
 
 - Crossover: Select part of the gene from parent1 and fill the rest using missing parts from parent2
 
-- Mutate: randomly swap the order of gene (city) for each child, have two implementations
-	- mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
-	- mutateAlt: alternative method, only swap once. 
+- Mutate: Randomly swap the order of gene (city) for each child, have two implementations
+	- Mutate: every city has a chance decided by mutation rate to swap position with one of the rest cities
+	- MutateAlt: alternative method, only swap once. 
 
 ## Utilities
 - CityReader
@@ -38,8 +38,6 @@ The path is represented by the order of city, the fitness is the total distance 
  	- Change the parameter in Main_Input to decide how many generations are kept (all generation information still showed in console), depending on the population size and maximum generation value, after some point the results are the same. The output file is used for analyzing more efficiently.
  - If a new set of input needed, just uncomment three lines in Main_Input, run once, then comment them out again
  ```
- 		// Uncomment the next three lines for new random input file
-
 //		int cityNum = 50;
 //		int scale = 500;
 //		ReportWriter.generateRandom(input, cityNum, scale);
