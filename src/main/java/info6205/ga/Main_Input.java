@@ -90,18 +90,18 @@ public class Main_Input {
 	
 	// Start evolution loop
 
-			// Run Evolution for Partition 1
+			/*// Run Evolution for Partition 1
 			CompletableFuture<Map<Integer, Population>> partition1 = CompletableFuture.supplyAsync(() -> {
 				return evolve(ga, timetable);
 			});
 
 			// Run Evolution for Partition 2
-			CompletableFuture<Map<Integer, Population>> patition2 = CompletableFuture.supplyAsync(() -> {
+			CompletableFuture<Map<Integer, Population>> partition2 = CompletableFuture.supplyAsync(() -> {
 				return evolve(ga, timetable);
 			});
 
 			// Merge the results
-			CompletableFuture<Map<Integer, Population>> combinedFuture = patition2.thenCombine(partition1, (xs1, xs2) -> {
+			CompletableFuture<Map<Integer, Population>> combinedFuture = partition2.thenCombine(partition1, (xs1, xs2) -> {
 				logger.info("In merge..");
 				Map<Integer, Population> result = new LinkedHashMap<Integer, Population>(xs1.size() + xs2.size());
 				return merge(result, xs1, xs2);
@@ -112,7 +112,7 @@ public class Main_Input {
 			population = result.get(result.size());
 
 	
-	
+	*/
 	
 	
 	

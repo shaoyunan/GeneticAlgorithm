@@ -9,9 +9,13 @@ public class Main_Random {
 	public static void main(String[] args) {
 
 		int scale = 500;
+		
 		int cityNum = 50;
+		
 		int maxGen = 500;
+		
 		int initPopSize = 1000;
+		
 		double mutationRate = 0.05;
 //		double fecundity = 0.5;
 //		int maturity = 2;
@@ -21,6 +25,7 @@ public class Main_Random {
 		City[] cities = CityReader.getRnadom(cityNum, scale);
 		
 		GeneticAlgorithm ga = new GeneticAlgorithm(initPopSize, mutationRate);
+		
 		Population population = new Population(initPopSize, cities);
 		
 		//System.out.println(population.getIndividuals().size());
