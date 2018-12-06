@@ -156,32 +156,4 @@ public class GeneticAlgorithm {
 		this.mutationRate = mutationRate;
 	}
 
-	// Evolve the population to next generation
-		public Population evolveParallel(Population pop, int n) {
-
-			Population newPopulation = new Population();
-
-			// Make the survivor pool
-			pop.sort();
-			Population survive = cull(pop);
-
-			// Make offsprings in the survivor pool
-			newPopulation = crossover(survive);
-
-			// Mutate the offsprings after breeding
-			for (int i = 0; i < newPopulation.size(); i++) {
-
-				// mutate(newPopulation.getIndividuals().get(i));
-
-				mutateAlt(newPopulation.getIndividuals().get(i));
-
-			}
-
-			// Use the survivor pool to fill the rest of the population
-			for (int i = 0; newPopulation.size() < populationSize; i++) {
-				newPopulation.addIndividual(pop.getIndividuals().get(i));
-			}
-
-			return newPopulation;
-		}
 }
