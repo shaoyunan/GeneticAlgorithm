@@ -27,7 +27,7 @@ public class Main_Input {
 		 * 
 		 * @param mutationRate the mutation rate of offsprings after crossover
 		 * 
-		 * @param recordNumber how many generation records will be stored in log file 
+		 * @param recordNumber how many generation records will be stored in log file
 		 */
 
 		String input = "cities.csv";
@@ -48,6 +48,7 @@ public class Main_Input {
 
 		GeneticAlgorithm ga = new GeneticAlgorithm(initPopSize, mutationRate);
 		Population population = new Population(initPopSize, cities);
+		long pTime = 0;
 
 		Report report = new Report();
 		report.addRecord(new Record(String.valueOf(0), df.format(population.getAvgFitness()),
@@ -57,9 +58,10 @@ public class Main_Input {
 				+ population.getFittest().totalDistance());
 
 		for (int i = 0; i < maxGen; i++) {
-
+			long startTime = System.currentTimeMillis();
 			population = ga.evolve(population);
-
+			long endTime = System.currentTimeMillis();
+			pTime += (endTime - startTime);
 			if (i < recordNumber) {
 				report.addRecord(new Record(String.valueOf(i + 1), df.format(population.getAvgFitness()),
 						df.format(population.getFittest().getFitness())));
@@ -72,6 +74,8 @@ public class Main_Input {
 		report.setResult("Candidate Path: " + population.getFittest().getCities().toString());
 		ReportWriter.makeReport(report);
 		System.out.println("Path: " + population.getFittest().getCities().toString());
+		System.out.println(pTime);
+		System.out.println("Average Time Taken for 1 Evolution: " + ((double)pTime / (double)maxGen) +"ms");
 	}
 
 }
