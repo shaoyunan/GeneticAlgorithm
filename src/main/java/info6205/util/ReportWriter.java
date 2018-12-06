@@ -39,6 +39,10 @@ public class ReportWriter {
 	}
 
 	public static void makeReport(Report report) throws IOException {
+		File directory = new File("output");
+		if(!directory.exists()) {
+			directory.mkdir();
+		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy HH-mm-ss");
 		Date date = new Date();
 		String fileName = "output/Output_" + dateFormat.format(date) + ".log";

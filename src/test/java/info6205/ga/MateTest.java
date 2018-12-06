@@ -66,21 +66,5 @@ public class MateTest {
 		 fitness = 1 / in.totalDistance();
 		 assertEquals(fitness, in.getFitness(),0.1);
 	 }
-	 	/*try { 
-     	Method td = in.getClass().getMethod("totalDistance");
-     	td.setAccessible(true); 
-	 	Object Parameters1 = null;
-	 	td.invoke(td,Object, Parameters1); 
-  	}  catch (SecurityException e) {
-		e.printStackTrace();
-	} catch (NoSuchMethodException e) {
-		e.printStackTrace();
-	} catch (IllegalArgumentException e) {
-		e.printStackTrace();
-	} catch (IllegalAccessException e) {
-		e.printStackTrace();
-	}  catch (InstantiationException e) {
-		e.printStackTrace();
-	}*/
 	    
 }

@@ -3,13 +3,12 @@ package info6205.ga;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import info6205.util.ReportWriter;
 import info6205.util.CityReader;
+import info6205.util.Record;
 import info6205.util.Report;
-import info6205.util.*;
+import info6205.util.ReportWriter;
 
-public class Main_Input {
-
+public class Main_Parallel {
 	public static void main(String[] args) throws IOException {
 
 		/*
@@ -73,5 +72,4 @@ public class Main_Input {
 		ReportWriter.makeReport(report);
 		System.out.println("Path: " + population.getFittest().getCities().toString());
 	}
-
 }
